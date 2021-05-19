@@ -1,5 +1,18 @@
 <!-- extending home_page.html -->
 
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags%}
+
+
 {% block content %}
-    {{ self.banner_title }}
+
+    {% image self.banner_image fill-900x400 as img %}
+
+    <div class="jumbotron" style="background-image: url('{{ img.url }}'); background-size: cover;">
+        <h1 class="display-4 text-white">{{ self.banner_title }}</h1>
+        <div class="lead text-white">{{ self.banner_subtitle|richtext }}</div>
+        {% if self.banner_cta %}
+            <a class="btn btn-primary btn-lg" href="#" role="button">@todo</a>
+        {% endif%}
+    </div>
 {% endblock %}
